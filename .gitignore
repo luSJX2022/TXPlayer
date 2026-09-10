@@ -1,0 +1,33 @@
+# 依赖与构建产物
+node_modules/
+release/
+build-temp/
+dist/
+build/
+*.log
+npm-debug.log*
+
+# Flutter 客户端
+txplayer-flutter/build/
+txplayer-flutter/.dart_tool/
+txplayer-flutter/.idea/
+txplayer-flutter/windows/flutter/ephemeral/
+txplayer-flutter/installer/*.exe
+
+# 私密数据：登录 cookie（绝不入库）
+server/cookie.json
+server/bili-cookie.json
+cookie.json
+bili-cookie.json
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# 无关的嵌套仓库
+Player/
+
+# 编辑器/工具产物
+.zcode/
+.idea/
+*.tsbuildinfo

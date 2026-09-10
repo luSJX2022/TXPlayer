@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: transparent;
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    -webkit-app-region: drag;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    /* 四周留出拖动边框，中间文字区可右键 */
+    padding: 12px 22px;
+  }
+  .lyric-wrap {
+    text-align: center;
+    pointer-events: auto;
+    -webkit-app-region: no-drag;
+    cursor: context-menu;
+  }
+  .lyric-origin {
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 1px 2px 6px rgba(0,0,0,0.8);
+    line-height: 1.6;
+    transition: all 0.3s;
+  }
+  .lyric-trans {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 4px;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+  }
+  .no-lyric {
+    color: rgba(255,255,255,0.5);
+    font-size: 18px;
+  }
+</style>
+</head>
+<body title="拖动边缘移动窗口 · 右键文字打开设置菜单">
+  <div class="lyric-wrap">
+    <div id="lyric-text" class="no-lyric">暂无歌词</div>
+  </div>
+  <script>
+    // 右键文字区 → 请求主进程弹出设置菜单
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault()
+      if (window.lyricApi) window.lyricApi.openContextMenu()
+    })
+  </script>
+</body>
+</html>

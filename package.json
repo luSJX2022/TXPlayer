@@ -1,0 +1,71 @@
+{
+  "name": "music-player",
+  "version": "2.0.3",
+  "private": true,
+  "description": "基于网易云 API 的音乐播放器（Vue3 + Vite + Pinia + Node/Express）",
+  "main": "electron/main.js",
+  "workspaces": [
+    "server",
+    "web"
+  ],
+  "scripts": {
+    "dev:server": "npm --workspace server run dev",
+    "dev:web": "npm --workspace web run dev",
+    "dev": "concurrently \"npm run dev:server\" \"wait-on http://localhost:3000/api/health && npm run dev:web\"",
+    "build": "npm --workspace web run build",
+    "electron:dev": "concurrently \"npm run dev:server\" \"wait-on http://localhost:3000/api/health && npm run dev:web\" \"wait-on http://localhost:5173 && electron .\"",
+    "electron:build": "npm run build && node build-script.js && electron-builder --config.afterPack=./after-pack.js",
+    "install:all": "npm install"
+  },
+  "build": {
+    "appId": "com.txplayer.app",
+    "productName": "TXPlayer",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "electron/**/*",
+      "web/dist/**/*"
+    ],
+    "asar": true,
+    "extraResources": [
+      {
+        "from": "build-temp/server",
+        "to": "server"
+      }
+    ],
+    "win": {
+      "icon": "build/icon.png",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "TXPlayer"
+    },
+    "portable": {
+      "artifactName": "TXPlayer-便携版.exe"
+    }
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.4",
+    "electron": "^43.2.0",
+    "electron-builder": "^26.15.3",
+    "wait-on": "^9.1.0"
+  }
+}
