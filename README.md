@@ -2,6 +2,11 @@
 
 基于 **Electron + Vue 3 + Node.js** 的桌面音乐播放器，聚合网易云音乐、哔哩哔哩、QQ 音乐与本地音乐。
 
+## 下载
+
+- **Electron 版（推荐，功能最全）**：[Releases → v2.0.3](https://github.com/luSJX2022/TXPlayer/releases/tag/v2.0.3)
+- **Flutter 版（重写版，安装包内置运行环境）**：[Releases → flutter-v1.0.0](https://github.com/luSJX2022/TXPlayer/releases/tag/flutter-v1.0.0)
+
 ## 功能
 
 - **多音源播放**：网易云音乐、B站视频（音画解析 / 清晰度切换）、QQ 音乐歌单导入、本地音乐文件夹扫描
