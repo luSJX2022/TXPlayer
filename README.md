@@ -50,6 +50,26 @@ npm run electron:build          # 打包 Windows 安装包（electron-builder, N
 - 音频使用 HTML `<audio>` + Web Audio API 实现均衡器；B站视频支持渐进式 MP4 与 DASH 探测
 - 桌面歌词为独立 Electron 窗口，通过 IPC 与主进程同步样式和歌词文本
 
+## 致谢与后端依赖
+
+后端（`server/`）基于以下开源项目构建：
+
+| 项目 | 版本 | 用途 |
+|---|---|---|
+| [NeteaseCloudMusicApiEnhanced](https://www.npmjs.com/package/@neteasecloudmusicapienhanced/api) | ^4.39 | **网易云音乐接口核心**（搜索 / 歌单 / 专辑 / 歌词 / 排行榜 / 登录等） |
+| [Express](https://github.com/expressjs/express) | ^4.22 | HTTP 服务框架 |
+| [cors](https://github.com/expressjs/cors) | ^2.8 | 跨域支持 |
+| [node-qrcode](https://github.com/soldair/node-qrcode) | ^1.5 | B站扫码登录二维码生成 |
+
+以下模块为本项目自研实现（不依赖第三方视频/音乐解析库）：
+
+- **B站**：视频信息与流地址解析（渐进式 MP4 / DASH 探测与节点选择）、清晰度切换、扫码登录、视频搜索
+- **QQ 音乐**：歌单解析（JSONP 接口）、歌曲播放地址获取
+- **本地音乐**：文件夹扫描、Range 请求代理播放、同名 `.lrc` 与 FLAC 内嵌歌词读取
+
+其他主要技术栈：Electron（桌面容器）、Vue 3 + Vite + Pinia + Vue Router（前端）、electron-builder（打包）；
+Flutter 版客户端基于 [media_kit](https://github.com/media-kit/media-kit)（mpv）等开源项目。
+
 ## 说明
 
 - 本项目仅供学习交流，音乐版权归各平台所有，请勿用于商业用途
