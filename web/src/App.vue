@@ -210,7 +210,7 @@ function goPlaylist(id: number) {
 </script>
 
 <template>
-  <div class="app">
+  <div class="app" :class="{ 'lyric-open': showLyric }">
     <audio ref="audioRef" preload="metadata" playsinline />
 
     <aside class="sidebar">
@@ -406,8 +406,13 @@ function goPlaylist(id: number) {
   display: flex;
   justify-content: center;
   padding: 0 24px;
-  z-index: 30;
+  /* 高于歌词页（z 50），歌词页打开时播放栏浮在页面之上 */
+  z-index: 55;
   pointer-events: none;
+}
+/* 歌词页为全屏页：播放栏相对整个窗口居中（不避开侧栏） */
+.app.lyric-open .player-dock {
+  position: fixed;
 }
 .player-dock :deep(.player-bar) {
   pointer-events: auto;

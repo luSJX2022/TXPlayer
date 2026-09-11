@@ -139,11 +139,6 @@ watch(
               <img :src="coverSrc" :alt="player.currentSong.name" />
             </div>
           </div>
-          <div class="tonearm" :class="{ lifted: !player.isPlaying }">
-            <div class="arm-base" />
-            <div class="arm-rod" />
-            <div class="arm-head" />
-          </div>
         </div>
       </div>
 
@@ -191,11 +186,8 @@ watch(
 <style scoped>
 .lyric-panel {
   position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  /* 底部留出悬浮播放条，与参考布局一致 */
-  bottom: 106px;
+  /* 全屏播放页（底部悬浮播放栏会浮在页面之上） */
+  inset: 0;
   z-index: 50;
   background: var(--bg);
   overflow: hidden;
@@ -242,7 +234,8 @@ watch(
   display: flex;
   align-items: center;
   gap: 5vw;
-  padding: 40px 6vw 32px;
+  /* 底部留出悬浮播放栏的高度 */
+  padding: 40px 6vw 116px;
 }
 /* 左侧：黑胶唱片 */
 .media-side {
@@ -300,13 +293,13 @@ watch(
       inset 0 0 60px rgba(0, 0, 0, 0.85);
   }
 }
-/* 唱片中央的封面圆标 */
+/* 唱片中央的封面圆标（放大显示歌曲图片） */
 .vinyl-label {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 42%;
-  height: 42%;
+  width: 66%;
+  height: 66%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   overflow: hidden;
@@ -331,54 +324,6 @@ watch(
   border-radius: 50%;
   background: #0a0a0c;
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.08);
-}
-/* 唱针（播放时落下，暂停时抬起） */
-.tonearm {
-  position: absolute;
-  top: -30px;
-  right: -34px;
-  width: 104px;
-  height: 280px;
-  transform-origin: 50% 16px;
-  transform: rotate(22deg);
-  transition: transform 0.7s cubic-bezier(0.34, 1.2, 0.64, 1);
-  z-index: 2;
-  pointer-events: none;
-}
-.tonearm.lifted {
-  transform: rotate(-6deg);
-}
-.arm-base {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #f5f5f7, #8e8e96 70%, #55555c);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-}
-.arm-rod {
-  position: absolute;
-  top: 22px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 7px;
-  height: 192px;
-  border-radius: 4px;
-  background: linear-gradient(90deg, #c7c9cf, #f4f4f7 45%, #a9abb2);
-}
-.arm-head {
-  position: absolute;
-  top: 212px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 38px;
-  border-radius: 6px;
-  background: linear-gradient(180deg, #e8e8ec, #83838b);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
 }
 /* B站视频盒 */
 .media-box {
@@ -497,7 +442,7 @@ watch(
   .lyric-layout {
     flex-direction: column;
     gap: 16px;
-    padding: 48px 24px 16px;
+    padding: 48px 24px 110px;
     overflow-y: auto;
     align-items: flex-start;
   }
@@ -508,19 +453,6 @@ watch(
   .vinyl-wrap {
     width: 220px;
     height: 220px;
-  }
-  .tonearm {
-    width: 64px;
-    height: 172px;
-    top: -18px;
-    right: -20px;
-  }
-  .arm-rod {
-    height: 116px;
-  }
-  .arm-head {
-    top: 130px;
-    height: 26px;
   }
   .media-box {
     width: 260px;

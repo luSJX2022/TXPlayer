@@ -31,3 +31,4 @@ Player/
 .zcode/
 .idea/
 *.tsbuildinfo
+.mimosa/
