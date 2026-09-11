@@ -4,7 +4,7 @@
 
 ## 下载
 
-- **Electron 版（推荐，功能最全）**：[Releases → v2.0.3](https://github.com/luSJX2022/TXPlayer/releases/tag/v2.0.3)
+- **Electron 版（推荐，功能最全）**：[Releases → v1.0.0](https://github.com/luSJX2022/TXPlayer/releases/tag/v1.0.0)
 - **Flutter 版（重写版，安装包内置运行环境）**：[Releases → flutter-v1.0.0](https://github.com/luSJX2022/TXPlayer/releases/tag/flutter-v1.0.0)
 
 ## 功能

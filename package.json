@@ -1,6 +1,6 @@
 {
   "name": "music-player",
-  "version": "2.0.3",
+  "version": "1.0.0",
   "private": true,
   "description": "基于网易云 API 的音乐播放器（Vue3 + Vite + Pinia + Node/Express）",
   "main": "electron/main.js",
